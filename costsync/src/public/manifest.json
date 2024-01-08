@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "version": "1.0.0",
+  "name": "constSync",
+  "action": {
+    "default_popup": "index.html",
+    "default_width": 400,
+    "default_height": 600
+  },
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "scripting",
+    "storage",
+    "webNavigation"
+  ],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "icons": {
+    "32": "images.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.amazon.in/*"],
+      "js": ["AmazonScript.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
