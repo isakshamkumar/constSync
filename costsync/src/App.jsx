@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import './App.css'
+import React from 'react';
+
 
 function App() {
 
@@ -10,12 +11,11 @@ function App() {
       // do something with response here, not outside the function
       console.log(response);
     })();
-  
   },[])
   
   return (
-    <div className='text-gray-200'>
-      constSync
+    <div className='text-gray-900 text-3xl p-20 h-[100vh]'>
+    ConstSync
     </div>
   )
 }
