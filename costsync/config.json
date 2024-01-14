@@ -1,0 +1,12 @@
+{
+  "websites": {
+    "example": {
+      "url": "https://www.flipkart.com",
+      "selectors": {
+        "product": ".product",
+        "title": ".B_NuCI",
+        "price": "._30jeq3 _16Jk6d"
+      }
+    }
+  }
+}

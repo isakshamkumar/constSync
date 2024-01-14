@@ -1,23 +1,44 @@
-import { useEffect } from 'react';
-import React from 'react';
+// src/Popup.js
+import React, { useState, useEffect } from "react";
 
-
-function App() {
+const Popup = () => {
+  const [productData, setProductData] = useState(null);
 
   useEffect(() => {
-    (async () => {
-      const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
-      const response = await chrome.tabs.sendMessage(tab.id, {greeting: "hello"});
-      // do something with response here, not outside the function
-      console.log(response);
-    })();
-  },[])
-  
-  return (
-    <div className='text-gray-900 text-3xl p-20 h-[100vh]'>
-    ConstSync
-    </div>
-  )
-}
+    console.log("Popup component loaded");
 
-export default App
+    // Example of listening for messages from the background script
+    const onMessage = (message) => {
+      if (message.type === "PRODUCT_DATA") {
+        setProductData(message.data);
+      }
+    };
+
+    chrome.runtime.onMessage.addListener(onMessage);
+
+    // Clean up: remove event listener when component unmounts
+    return () => {
+      chrome.runtime.onMessage.removeListener(onMessage);
+    };
+  }, []); // The empty dependency array ensures the effect runs only once on mount
+
+  return (
+    <div>
+      {productData ? (
+        <div>
+          <h2>Product Information</h2>
+          {productData.map((product, index) => (
+            <div key={index}>
+              <p>Title: {product.title}</p>
+              <p>Price: {product.price}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>No product data available.</p>
+      )}
+    </div>
+  );
+};
+
+export default Popup;
