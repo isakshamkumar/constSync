@@ -2,6 +2,9 @@
   "manifest_version": 3,
   "version": "1.0.0",
   "name": "constSync",
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
     "default_popup": "index.html",
     "default_width": 400,
@@ -20,8 +23,13 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.amazon.in/*"],
-      "js": ["AmazonScript.js"],
+      "matches": ["<all_urls>"],
+      "js": ["ContentScript.js", "FlipcartScript.js", "meshoScript.js", "olxScript.js"],
+      "run_at": "document_idle"
+    }, 
+    {
+      "matches" : ["https://www.amazon.in/*"],
+      "js" : [ "AmazonScript.js"],
       "run_at": "document_idle"
     }
   ]

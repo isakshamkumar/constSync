@@ -10,10 +10,12 @@
 //     }
 // }
 
-function extractValues() {
+function Amazon() {
+
   // heading
   const HeadingElement = document.getElementById("title");
   const Heading = HeadingElement ? HeadingElement.textContent.trim() : null;
+
 
   // pice and discount
   const PriceElement = document.getElementById(
@@ -22,7 +24,6 @@ function extractValues() {
   const discountElement = PriceElement.querySelector(".savingsPercentage");
   const discountedMRPElement = PriceElement.querySelector(".priceToPay");
   const discount = discountElement ? discountElement.textContent.trim() : null;
-
   let discountedMRP = null;
   if (discountedMRPElement) {
     const discountedMRPText = discountedMRPElement.querySelector(
@@ -32,6 +33,7 @@ function extractValues() {
       ? discountedMRPText.textContent.trim()
       : null;
   }
+
 
   // product description
   const productDesc = document.getElementById("productDesc");
@@ -75,6 +77,8 @@ function extractValues() {
     }
   }
 
+
+
   // reviews
   const Reviews = document.getElementById("cm_cr_dp_mb_rating_histogram");
   let averageStars = null;
@@ -99,6 +103,8 @@ function extractValues() {
       : null;
   }
 
+
+  
   // final result
   const result = {
     discount: discount,
@@ -111,4 +117,21 @@ function extractValues() {
 
   console.log(result);
 }
-extractValues();
+//   const apiUrl = 'https://apiurl.com/api'; 
+
+//   fetch(apiUrl, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(result),
+//   })
+//     .then(response => response.json())
+//     .then(responseData => {
+//       console.log('API Response:', responseData);
+//     })
+//     .catch(error => {
+//       console.error('Error:', error);
+//     });
+// }
+Amazon();
